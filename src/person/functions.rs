@@ -34,3 +34,4 @@ impl Person {
         PlayerDefPreview(self.person_id.clone(), def_ability)
     }
 }
+
