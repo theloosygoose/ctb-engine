@@ -21,14 +21,21 @@ pub struct Person {
 pub struct Matchup(PersonId, PersonId);
 
 #[derive(Debug, Clone, PartialEq)]
-pub struct PlayerOffPreview(PersonId, f32);
+pub struct PlayerOffPreview(pub PersonId, pub f32);
 
 #[derive(Debug, Clone, PartialEq)]
-pub struct PlayerDefPreview(PersonId, f32);
+pub struct PlayerDefPreview(pub PersonId, pub f32);
 
 impl PlayerDefPreview {
     pub fn from_tuple(tup: (PersonId, f32)) -> PlayerDefPreview {
         PlayerDefPreview(tup.0, tup.1)
+    }
+    
+    pub fn to_tuple(&mut self) -> (PersonId, f32) {
+        let id = self.0.clone();
+        let val = self.1.clone();
+
+        (id, val)
     }
 }
 
@@ -36,6 +43,14 @@ impl PlayerOffPreview {
     pub fn from_tuple(tup: (PersonId, f32)) -> PlayerOffPreview {
         PlayerOffPreview(tup.0, tup.1)
     }
+
+    pub fn to_tuple(&mut self) -> (PersonId, f32) {
+        let id = self.0.clone();
+        let val = self.1.clone();
+
+        (id, val)
+    }
+    
 }
 
 impl Sortable for Vec<PlayerOffPreview> {
