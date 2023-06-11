@@ -1,5 +1,5 @@
-use crate::person::{Person, PersonId};
 use crate::person::ratings::*;
+use crate::person::{Person, PersonId};
 
 pub fn get_team_0() -> Vec<Person> {
     let player_0_0: Person = Person {
