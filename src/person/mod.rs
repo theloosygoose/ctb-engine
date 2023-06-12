@@ -1,5 +1,7 @@
+pub mod previews;
 pub mod functions;
 pub mod ratings;
+pub mod matchup;
 
 #[derive(Debug, Clone, Eq, PartialEq, Hash)]
 pub struct PersonId(pub String);
@@ -15,25 +17,3 @@ pub struct Person {
     pub intangibles: ratings::IntangibleRatings,
 }
 
-#[derive(Debug)]
-pub struct Matchup(pub PersonId, pub PersonId);
-
-#[derive(Debug, Clone, PartialEq)]
-pub struct PlayerOffPreview(pub PersonId, pub f32);
-
-#[derive(Debug, Clone, PartialEq)]
-pub struct PlayerDefPreview(pub PersonId, pub f32);
-
-impl Matchup {
-    pub fn gen(offense: &Vec<PlayerOffPreview>, defense: &Vec<PlayerDefPreview>) -> Vec<Matchup> {
-        let mut matchups: Vec<Matchup> = vec![];
-
-        let mut def_used: Vec<usize> = vec![];
-        offense
-            .iter()
-            .enumerate()
-            .for_each(|(i, off_player)| defense.iter().for_each(|defender| {}));
-
-        matchups
-    }
-}
