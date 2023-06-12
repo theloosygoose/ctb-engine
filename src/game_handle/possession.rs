@@ -86,16 +86,36 @@ impl PossesionData {
         self.defender = Some(defender);
 
         match shot_type {
-            ShotType::Three(val) =>     { if val { self.points_scored = 3 } }
-            ShotType::MidRange(val) =>  { if val { self.points_scored = 2 } }
-            ShotType::Layup(val) =>     { if val { self.points_scored = 2 } }
-            ShotType::Dunk(val) =>      { if val { self.points_scored = 2 } }
-            ShotType::Inside(val) =>    { if val { self.points_scored = 2 } }
-            ShotType::None =>           self.points_scored = 0,
+            ShotType::Three(val) => {
+                if val {
+                    self.points_scored = 3
+                }
+            }
+            ShotType::MidRange(val) => {
+                if val {
+                    self.points_scored = 2
+                }
+            }
+            ShotType::Layup(val) => {
+                if val {
+                    self.points_scored = 2
+                }
+            }
+            ShotType::Dunk(val) => {
+                if val {
+                    self.points_scored = 2
+                }
+            }
+            ShotType::Inside(val) => {
+                if val {
+                    self.points_scored = 2
+                }
+            }
+            ShotType::None => self.points_scored = 0,
         }
         self.shot_type = shot_type;
     }
-    
+
     pub fn turnover(&mut self, turnover: Turnover, duration: u16) {
         self.duration += duration;
         self.turnover = turnover;

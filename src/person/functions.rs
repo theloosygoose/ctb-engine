@@ -1,6 +1,6 @@
 use super::{Person, PersonId, PlayerDefPreview, PlayerOffPreview};
-use crate::weights::{DEF_ABILITY, OFF_ABILITY};
 use crate::math::Sortable;
+use crate::weights::{DEF_ABILITY, OFF_ABILITY};
 
 impl PlayerDefPreview {
     pub fn from_tuple(tup: (PersonId, f32)) -> PlayerDefPreview {
@@ -173,4 +173,3 @@ fn sort_test() {
     assert_eq!(norm_sort[0].1, 80.2);
     assert_eq!(rev_sort[0].1, 12.2);
 }
-
