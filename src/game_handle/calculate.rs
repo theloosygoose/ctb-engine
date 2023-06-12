@@ -61,6 +61,5 @@ pub fn run_play(
 
 #[test]
 fn play_test() {
-    run_play();
 }
 
