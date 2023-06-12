@@ -1,10 +1,14 @@
+use rand::Rng;
+
 use crate::person::{Person, PersonId, Matchup, PlayerOffPreview, PlayerDefPreview};
 use crate::team::{get_initiator, Team};
 use super::possession::*;
 use super::constants::*;
 
 pub enum Action {
-    
+    Shoot,
+    Create,
+    Pass,
 }
 
 pub fn possession_loop(
@@ -40,11 +44,23 @@ pub fn possession_loop(
 pub fn run_play(
     open_ability: Vec<PlayerOffPreview>, 
     def_ablity: Vec<PlayerDefPreview>,
+    matchups: Vec<Matchup>,
     ball_handler: PlayerOffPreview,
-    ) -> [f32; 4] {
+    ) -> [f32; 5] {
     
-    let openess = [0.0, 0.0, 0.0, 0.0];
+    let mut openess = [0.0; 5];
+    
+    openess.iter().enumerate().for_each(| (i, val)| {
+        
+    }); 
+    
+    println!("Openess Array: {:?}", openess);
     
     openess
+}
+
+#[test]
+fn play_test() {
+    run_play();
 }
 

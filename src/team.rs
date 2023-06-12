@@ -23,13 +23,14 @@ pub fn get_initiator(off_team_usg: &Vec<PlayerOffPreview>) -> PersonId {
     ball_handler
 }
 
-
 pub trait Team {
-    fn off_previews(self) -> Vec<PlayerOffPreview> ;
+    fn off_previews(self) -> Vec<PlayerOffPreview>;
     
-    fn def_previews(self) -> Vec<PlayerDefPreview> ;
+    fn def_previews(self) -> Vec<PlayerDefPreview>;
 
-    fn get_player(&self, player: &PersonId) -> Person ;
+    fn get_player(&self, player: &PersonId) -> Person;
+
+    fn gen_def_matchups(&self, off_team: Vec<Person>) -> Vec<Matchup>;
 }
 
 impl Team for Vec<Person> {
@@ -40,9 +41,7 @@ impl Team for Vec<Person> {
         self.iter().for_each(|player| {
             previews.push(player.off_ability())
         });
-
         previews
-        
     }
     
     fn def_previews(self) -> Vec<PlayerDefPreview> {
@@ -62,5 +61,8 @@ impl Team for Vec<Person> {
         
         player_data.unwrap().clone()
     }
-    
+
+    fn gen_def_matchups(&self, off_team: Vec<Person>) -> Vec<Matchup> {
+        
+    }
 }
