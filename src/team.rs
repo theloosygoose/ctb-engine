@@ -63,6 +63,9 @@ impl Team for Vec<Person> {
     }
 
     fn gen_def_matchups(&self, off_team: Vec<Person>) -> Vec<Matchup> {
+        off_team.iter().for_each({|player| {
+
+        }})
         
     }
 }

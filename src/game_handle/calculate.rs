@@ -16,7 +16,6 @@ pub fn possession_loop(
     defense: &Vec<Person>,
     matchups: &Vec<Matchup>,
     qtr_time: u16,
-    
 ) -> PossesionData {
 
     let shot_clock = if qtr_time > SHOT_CLOCK { 

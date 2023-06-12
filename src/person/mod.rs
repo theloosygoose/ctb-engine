@@ -29,16 +29,10 @@ impl Matchup {
         let mut matchups: Vec<Matchup> = vec![];
 
         let mut def_used: Vec<usize> = vec![];
-
         offense.iter().enumerate().for_each(|(i, off_player)| {
-            let def_player = 
-            
 
-            matchups.push(Matchup(off_player, def_player) 
         });
 
-        
-        
         matchups
     }
 
