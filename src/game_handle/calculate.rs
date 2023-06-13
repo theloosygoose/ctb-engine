@@ -1,6 +1,8 @@
 use super::constants::*;
 use super::possession::*;
-use crate::person::{Matchup, Person, PlayerDefPreview, PlayerOffPreview};
+use crate::person::Person;
+use crate::person::matchup::*;
+use crate::person::previews::*;
 use crate::team::{get_initiator, Team};
 
 pub enum Action {

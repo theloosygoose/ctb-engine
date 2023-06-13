@@ -1,4 +1,6 @@
-use crate::person::{Person, PersonId, PlayerDefPreview, PlayerOffPreview};
+use crate::person::{Person, PersonId};
+use crate::person::previews::*;
+// use crate::person::matchup::*;
 use random_choice;
 
 #[derive(Debug)]
@@ -30,7 +32,7 @@ pub trait Team {
 
     fn get_player(&self, player: &PersonId) -> Person;
 
-    fn gen_def_matchups(&self, off_team: Vec<Person>) -> Vec<Matchup>;
+    //fn gen_matchups(&self, offense_lineup: Vec<PlayerOffPreview>) -> Vec<Matchup>
 }
 
 impl Team for Vec<Person> {
@@ -57,9 +59,5 @@ impl Team for Vec<Person> {
             .find(|person_data| &person_data.person_id == player);
 
         player_data.unwrap().clone()
-    }
-
-    fn gen_def_matchups(&self, off_team: Vec<Person>) -> Vec<Matchup> {
-        off_team.iter().for_each({ |player| {} })
     }
 }
