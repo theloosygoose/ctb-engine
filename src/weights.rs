@@ -56,7 +56,7 @@ pub const D_OFFBALL: [f32; 7] = [
     1.0, //intelligence
 ];
 
-pub const HEIGHT_MATCHUP:f32 = 1.07;
-pub const HEIGHT_SMOOTHING_MATCHUP:f32 = 0.4;
+pub const HEIGHT_MATCHUP:f32 = 1.104;
+pub const HEIGHT_SMOOTHING_MATCHUP:u16 = 20;
 
-pub const RATING_MATCHUP:f32 = 1.5;
+pub const RATING_MATCHUP:f32 = 1.3;

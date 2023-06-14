@@ -14,13 +14,13 @@ impl Matchup {
         let mut def_abil: Vec<(PersonId, u16)> = vec![];
 
         offense_creation.iter().for_each(|player|{
-            let value = ( (HEIGHT_MATCHUP.powi(player.3 as i32) * HEIGHT_SMOOTHING_MATCHUP).round() as u16) + (RATING_MATCHUP * player.1).round() as u16;
+            let value = ( ((HEIGHT_MATCHUP.powi(player.3 as i32).round() as u16) / (HEIGHT_SMOOTHING_MATCHUP)) ) + (RATING_MATCHUP * player.1).round() as u16;
 
             off_abil.push((player.0.clone(), value));
         });
 
         on_ball_defense.iter().for_each(|player|{
-            let value = ( (HEIGHT_MATCHUP.powi(player.3 as i32) * HEIGHT_SMOOTHING_MATCHUP).round() as u16) + (RATING_MATCHUP * player.1).round() as u16;
+            let value = ( ((HEIGHT_MATCHUP.powi(player.3 as i32).round() as u16) / (HEIGHT_SMOOTHING_MATCHUP)) ) + (RATING_MATCHUP * player.1).round() as u16;
 
             def_abil.push((player.0.clone(), value));
         });

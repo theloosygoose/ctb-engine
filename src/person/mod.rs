@@ -83,23 +83,23 @@ impl Person {
         match value_type {
             DefVal::OffBall => {
                 let value =    ((rtngs.def_awareness as f32 * D_OFFBALL[0])
-                             + (rtngs.lateral as f32 * D_OFFBALL[1])
-                             + (rtngs.speed as f32 * D_OFFBALL[2])
-                             + (rtngs.burst as f32 * D_OFFBALL[3])
-                             + (rtngs.wingspan as f32 * D_OFFBALL[4])
-                             + (personality.dog as f32 * D_OFFBALL[5])
-                             + (personality.intelligence as f32 * D_OFFBALL[6])) / (D_OFFBALL.iter().sum::<f32>());
+                                + (rtngs.lateral as f32 * D_OFFBALL[1])
+                                + (rtngs.speed as f32 * D_OFFBALL[2])
+                                + (rtngs.burst as f32 * D_OFFBALL[3])
+                                + (rtngs.wingspan as f32 * D_OFFBALL[4])
+                                + (personality.dog as f32 * D_OFFBALL[5])
+                                + (personality.intelligence as f32 * D_OFFBALL[6])) / (D_OFFBALL.iter().sum::<f32>());
 
                 return DefPreview(self.person_id.clone(), value, value_type, self.intangibles.height);
             },
             DefVal::OnBall => {
                 let value =    ((rtngs.def_awareness as f32 * D_ONBALL[0])
-                             + ((u16::pow(rtngs.lateral, 2)/100) as f32 * D_ONBALL[1])
-                             + (rtngs.fluidity as f32 * D_ONBALL[2])
-                             + (rtngs.burst as f32 * D_ONBALL[3])
-                             + (rtngs.wingspan as f32 * D_ONBALL[4])
-                             + (personality.dog as f32 * D_ONBALL[5])
-                             + (personality.intelligence as f32 * D_ONBALL[6])) / (D_ONBALL.iter().sum::<f32>());
+                                + ((u16::pow(rtngs.lateral, 2)/100) as f32 * D_ONBALL[1])
+                                + (rtngs.fluidity as f32 * D_ONBALL[2])
+                                + (rtngs.burst as f32 * D_ONBALL[3])
+                                + (rtngs.wingspan as f32 * D_ONBALL[4])
+                                + (personality.dog as f32 * D_ONBALL[5])
+                                + (personality.intelligence as f32 * D_ONBALL[6])) / (D_ONBALL.iter().sum::<f32>());
 
                 return DefPreview(self.person_id.clone(), value, value_type, self.intangibles.height);
             }
