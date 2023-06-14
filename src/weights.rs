@@ -52,8 +52,12 @@ pub const D_OFFBALL: [f32; 8] = [
     1.0, //lateral
     1.2, //speed
     1.1, //burst
-    1.2, //height
+    1.0, //height
     1.4, //wingspan
     1.3, //dog
     1.0, //intelligence
 ];
+
+pub const HEIGHT_MATCHUP:u16 = 150;
+
+pub const RATING_MATCHUP:f32 = 1.5;

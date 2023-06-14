@@ -6,7 +6,7 @@ use random_choice;
 #[derive(Debug)]
 pub struct Matchup(PersonId, PersonId, f32);
 
-pub fn get_initiator(off_team_usg: &Vec<PlayerOffPreview>) -> PersonId {
+pub fn pick_random_val(off_team_usg: &Vec<OffPreview>) -> PersonId {
     let mut ids: Vec<PersonId> = vec![];
     let mut val: Vec<f32> = vec![];
 
@@ -26,29 +26,31 @@ pub fn get_initiator(off_team_usg: &Vec<PlayerOffPreview>) -> PersonId {
 }
 
 pub trait Team {
-    fn off_previews(self) -> Vec<PlayerOffPreview>;
+    fn off_previews(self, offense_val: OffVal) -> Vec<OffPreview>;
 
-    fn def_previews(self) -> Vec<PlayerDefPreview>;
+    fn def_previews(self, defense_val: DefVal) -> Vec<DefPreview>;
 
     fn get_player(&self, player: &PersonId) -> Person;
-
-    //fn gen_matchups(&self, offense_lineup: Vec<PlayerOffPreview>) -> Vec<Matchup>
 }
 
 impl Team for Vec<Person> {
-    fn off_previews(self) -> Vec<PlayerOffPreview> {
-        let mut previews: Vec<PlayerOffPreview> = vec![];
+    fn off_previews(self, offense_val: OffVal) -> Vec<OffPreview> {
+        let mut previews: Vec<OffPreview> = vec![];
 
-        self.iter()
-            .for_each(|player| previews.push(player.off_ability()));
+        self.iter().for_each(|player| {
+
+            previews.push(player.off_preview(offense_val));
+        });
+
         previews
     }
 
-    fn def_previews(self) -> Vec<PlayerDefPreview> {
-        let mut previews: Vec<PlayerDefPreview> = vec![];
+    fn def_previews(self, defense_val: DefVal) -> Vec<DefPreview> {
+        let mut previews: Vec<DefPreview> = vec![];
 
-        self.iter()
-            .for_each(|player| previews.push(player.def_ability()));
+        self.iter().for_each(|player|{
+            previews.push(player.def_preview(defense_val));
+        });
 
         previews
     }
@@ -60,4 +62,5 @@ impl Team for Vec<Person> {
 
         player_data.unwrap().clone()
     }
+
 }

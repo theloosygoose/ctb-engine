@@ -2,7 +2,7 @@ use crate::math::Sortable;
 use super::PersonId;
 
 
-#[derive(Debug, Clone, PartialEq)]
+#[derive(Debug, Clone, Copy, PartialEq)]
 pub enum OffVal {
     Initiator,
     Driving,
@@ -10,17 +10,17 @@ pub enum OffVal {
     FloorSpacing,
 }
 
-#[derive(Debug, Clone, PartialEq)]
+#[derive(Debug, Clone, Copy, PartialEq)]
 pub enum DefVal {
     OffBall,
     OnBall,
 }
 
 #[derive(Debug, Clone, PartialEq)]
-pub struct DefPreview(pub PersonId, pub f32, pub DefVal );
+pub struct DefPreview(pub PersonId, pub f32, pub DefVal, pub u16);
 
 #[derive(Debug, Clone, PartialEq)]
-pub struct OffPreview(pub PersonId, pub f32, pub OffVal);
+pub struct OffPreview(pub PersonId, pub f32, pub OffVal, pub u16);
 
 impl Sortable for Vec<OffPreview> {
     fn sort(&mut self) {
