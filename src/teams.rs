@@ -224,7 +224,7 @@ pub fn get_team_1() -> Vec<Person> {
 
     let player_2_1: Person = Person {
         name: "SLASHING_WING_SF".to_string(),
-        person_id: PersonId("slashingwing_sf_team1".to_string()),
+        person_id: PersonId("two_way_star_wing_team1".to_string()),
         age: 22,
         team: Some("team1".to_string()),
         personality: Personality {
@@ -236,20 +236,20 @@ pub fn get_team_1() -> Vec<Person> {
             intelligence: 42,
         },
         intangibles: IntangibleRatings {
-            ball_handle: 42,
-            burst: 45,
+            ball_handle: 55,
+            burst: 55,
             def_awareness: 59,
             fluidity: 45,
             hands: 22,
-            height: 57,
+            height: 60,
             off_awareness: 60,
             pass_accuracy: 36,
-            shot_form: 54,
-            lateral: 23,
-            speed: 43,
-            strength: 34,
-            wingspan: 20,
-            touch: 61,
+            shot_form: 55,
+            lateral: 60,
+            speed: 55,
+            strength: 44,
+            wingspan: 50,
+            touch: 60,
         },
     };
 
