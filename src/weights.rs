@@ -36,28 +36,27 @@ pub const SPACING: [f32; 4] = [
     1.0, //intelligence
 ];
 
-pub const D_ONBALL: [f32; 8] = [
+pub const D_ONBALL: [f32; 7] = [
     1.0, //def_awareness
-    1.7, //lateral
-    1.4, //fluidity
-    1.1, //burst
-    1.0, //height
-    1.0, //wingspan
-    1.7, //dog
-    1.0, //intelligence
+    5.0, //lateral
+    3.0, //fluidity
+    1.0, //burst
+    2.0, //wingspan
+    2.0, //dog
+    1.5, //intelligence
 ];
 
-pub const D_OFFBALL: [f32; 8] = [
+pub const D_OFFBALL: [f32; 7] = [
     1.7, //def_awareness
     1.0, //lateral
     1.2, //speed
     1.1, //burst
-    1.0, //height
     1.4, //wingspan
     1.3, //dog
     1.0, //intelligence
 ];
 
-pub const HEIGHT_MATCHUP:u16 = 150;
+pub const HEIGHT_MATCHUP:f32 = 1.07;
+pub const HEIGHT_SMOOTHING_MATCHUP:f32 = 0.4;
 
 pub const RATING_MATCHUP:f32 = 1.5;

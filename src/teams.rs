@@ -272,7 +272,7 @@ pub fn get_team_1() -> Vec<Person> {
             def_awareness: 70,
             fluidity: 13,
             hands: 35,
-            height: 57,
+            height: 65,
             off_awareness: 41,
             pass_accuracy: 43,
             shot_form: 51,

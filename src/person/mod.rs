@@ -38,7 +38,7 @@ impl Person {
                              + (personality.creativity as f32 * INITIATOR[8]))
                     / INITIATOR.len() as f32;
 
-                return OffPreview(self.person_id.clone(), value, value_type, rtngs.height);
+                return OffPreview(self.person_id.clone(), value, value_type, self.intangibles.height);
             },
             OffVal::OffBall => {
                 let value = ((rtngs.off_awareness as f32 * OFF_BALL[0])
@@ -48,7 +48,7 @@ impl Person {
                              + (personality.dog as f32 * OFF_BALL[4]))
                     / OFF_BALL.len() as f32;
 
-                return OffPreview(self.person_id.clone(), value, value_type, rtngs.height);
+                return OffPreview(self.person_id.clone(), value, value_type, self.intangibles.height);
             },
             OffVal::Driving => {
                 let value = ((rtngs.off_awareness as f32 * DRIVING[0])
@@ -61,7 +61,7 @@ impl Person {
                              + (personality.dog as f32 * DRIVING[7]))
                     / DRIVING.len() as f32;
 
-                return OffPreview(self.person_id.clone(), value, value_type, rtngs.height);
+                return OffPreview(self.person_id.clone(), value, value_type, self.intangibles.height);
             },
             OffVal::FloorSpacing => {
                 let value = ((rtngs.off_awareness as f32 * SPACING[0])
@@ -71,7 +71,7 @@ impl Person {
                     / SPACING.len() as f32;
 
 
-                return OffPreview(self.person_id.clone(), value, value_type, rtngs.height);
+                return OffPreview(self.person_id.clone(), value, value_type, self.intangibles.height);
             },
         }
     }
@@ -82,30 +82,26 @@ impl Person {
 
         match value_type {
             DefVal::OffBall => {
-                let value = ((rtngs.def_awareness as f32 * D_OFFBALL[0])
+                let value =    ((rtngs.def_awareness as f32 * D_OFFBALL[0])
                              + (rtngs.lateral as f32 * D_OFFBALL[1])
                              + (rtngs.speed as f32 * D_OFFBALL[2])
                              + (rtngs.burst as f32 * D_OFFBALL[3])
-                             + (rtngs.height as f32 * D_OFFBALL[4])
-                             + (rtngs.wingspan as f32 * D_OFFBALL[5])
-                             + (personality.dog as f32 * D_OFFBALL[6])
-                             + (personality.intelligence as f32 * D_OFFBALL[7]))
-                    / D_OFFBALL.len() as f32;
+                             + (rtngs.wingspan as f32 * D_OFFBALL[4])
+                             + (personality.dog as f32 * D_OFFBALL[5])
+                             + (personality.intelligence as f32 * D_OFFBALL[6])) / (D_OFFBALL.iter().sum::<f32>());
 
-                return DefPreview(self.person_id.clone(), value, value_type, rtngs.height);
+                return DefPreview(self.person_id.clone(), value, value_type, self.intangibles.height);
             },
             DefVal::OnBall => {
-                let value = ((rtngs.def_awareness as f32 * D_ONBALL[0])
-                             + (rtngs.lateral as f32 * D_ONBALL[1])
+                let value =    ((rtngs.def_awareness as f32 * D_ONBALL[0])
+                             + ((u16::pow(rtngs.lateral, 2)/100) as f32 * D_ONBALL[1])
                              + (rtngs.fluidity as f32 * D_ONBALL[2])
                              + (rtngs.burst as f32 * D_ONBALL[3])
-                             + (rtngs.height as f32 * D_ONBALL[4])
-                             + (rtngs.wingspan as f32 * D_ONBALL[5])
-                             + (personality.dog as f32 * D_ONBALL[6])
-                             + (personality.intelligence as f32 * D_ONBALL[7]))
-                    / D_ONBALL.len() as f32;
+                             + (rtngs.wingspan as f32 * D_ONBALL[4])
+                             + (personality.dog as f32 * D_ONBALL[5])
+                             + (personality.intelligence as f32 * D_ONBALL[6])) / (D_ONBALL.iter().sum::<f32>());
 
-                return DefPreview(self.person_id.clone(), value, value_type, rtngs.height);
+                return DefPreview(self.person_id.clone(), value, value_type, self.intangibles.height);
             }
         }
     }
