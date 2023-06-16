@@ -60,4 +60,9 @@ I think that we just have to narrow down the amount of roles
 # How to Simulate Games
 
 #### Needs
+Accurate Statistics -- Final Scores should be accurate 
+
+--> Good Plyaers shooting more shots 
+--> Bad Players shooting bad shots
+
 #### Wants 
