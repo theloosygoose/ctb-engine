@@ -57,7 +57,6 @@ pub fn gen(offense_creation:&Vec<OffPreview>, on_ball_defense:&Vec<DefPreview>) 
 ```
 
 ### Breakdown
-
 Here we do the [equation](#equation) from above on both `offense_creation` and `on_ball_defense`.
 ```rust
 offense_creation.iter().for_each(|player|{
