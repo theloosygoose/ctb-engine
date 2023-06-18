@@ -1,10 +1,7 @@
 use crate::person::{Person, PersonId};
 use crate::person::previews::*;
-// use crate::person::matchup::*;
 use random_choice;
 
-#[derive(Debug)]
-pub struct Matchup(PersonId, PersonId, f32);
 
 pub fn pick_random_val(off_team_usg: &Vec<OffPreview>) -> PersonId {
     let mut ids: Vec<PersonId> = vec![];
@@ -25,11 +22,11 @@ pub fn pick_random_val(off_team_usg: &Vec<OffPreview>) -> PersonId {
     ball_handler
 }
 
-pub trait Team {
+pub trait Searchable {
     fn get_player(&self, player: &PersonId) -> Person;
 }
 
-impl Team for Vec<Person> {
+impl Searchable for Vec<Person> {
     fn get_player(&self, player: &PersonId) -> Person {
         let player_data = self
             .iter()

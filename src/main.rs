@@ -8,23 +8,14 @@ pub mod weights;
 use crate::teams::*;
 use crate::person::previews::*;
 use crate::person::matchup::Matchup;
+use crate::game_handle::calculate::possession_loop;
 
 fn main() {
     let team_0 = get_team_0();
     let team_1 = get_team_1();
 
-    let team_0_off_previes = OffPreview::off_previews(&team_0, OffVal::Driving);
-    let team_1_def_previes = DefPreview::def_previews(&team_1, DefVal::OffBall);
+    let qtr_time = 120;
 
-    let team_0_def_previes = DefPreview::def_previews(&team_0, DefVal::OnBall);
-    let team_1_off_previes = OffPreview::off_previews(&team_1, OffVal::Driving);
+    possession_loop(&team_0, &team_1, qtr_time);
 
-    let team_1_matchups = Matchup::gen(&team_0_off_previes, &team_1_def_previes);
-    let team_0_matchups = Matchup::gen(&team_1_off_previes, &team_0_def_previes);
-
-    println!("----MATCHUPS----");
-    println!("----TEAM_1 DEFENSE----");
-    println!("{:#?}", team_1_matchups);
-    println!("----TEAM_0 DEFENSE----");
-    println!("{:#?}", team_0_matchups);
 }

@@ -135,23 +135,27 @@ impl Sortable for Vec<DefPreview> {
     }
 }
 
+pub trait RandomPerson {
+    fn pick_random_val(&self)-> PersonId;
+}
 
-// #[test]
-// fn sort_test() {
-    // let player_0 = PlayerVal(PersonId("john991".to_string()), 44.2);
-    // let player_1 = PlayerVal(PersonId("carl12345".to_string()), 50.0);
-    // let player_2 = PlayerVal(PersonId("nate44".to_string()), 80.2);
-    // let player_3 = PlayerVal(PersonId("tim332".to_string()), 12.2);
-    // let player_4 = PlayerVal(PersonId("john991".to_string()), 66.2);
+impl RandomPerson for Vec<OffPreview> {
+    fn pick_random_val(&self)-> PersonId {
+        let mut ids: Vec<PersonId> = vec![];
+        let mut val: Vec<f32> = vec![];
 
-    // let test_players = vec![player_0, player_1, player_2, player_3, player_4];
+        &self.iter().for_each(|player| {
+            ids.push(player.0.clone());
+            val.push(player.1.clone());
+        });
 
-    // let mut norm_sort = test_players.clone();
-    // norm_sort.sort();
+        let ball_handler = random_choice::random_choice()
+            .random_choice_f32(&ids, &val, 1)
+            .first()
+            .unwrap()
+            .to_owned()
+            .to_owned();
 
-    // let mut rev_sort = test_players.clone();
-    // rev_sort.rev_sort();
-
-    // assert_eq!(norm_sort[0].1, 80.2);
-    // assert_eq!(rev_sort[0].1, 12.2);
-// }
+        ball_handler
+    }
+}
