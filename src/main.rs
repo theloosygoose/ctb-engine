@@ -4,6 +4,7 @@ pub mod person;
 pub mod team;
 pub mod teams;
 pub mod weights;
+pub mod traits;
 
 use crate::teams::*;
 use crate::person::previews::*;
