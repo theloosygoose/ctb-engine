@@ -1,9 +1,3 @@
-pub trait Sortable {
-    fn sort(&mut self);
-
-    fn rev_sort(&mut self);
-}
-
 pub fn mean(data: &Vec<f32>) -> f32 {
     let sum = data.iter().sum::<f32>() as f32;
 

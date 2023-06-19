@@ -3,7 +3,7 @@ use super::previews::*;
 
 use crate::weights::*;
 
-#[derive(Debug)]
+#[derive(Debug, Clone)]
 pub struct Matchup(pub PersonId, pub PersonId);
 
 impl Matchup {
@@ -27,9 +27,6 @@ impl Matchup {
 
         off_abil.sort_by_key(|k| k.1);
         def_abil.sort_by_key(|k| k.1);
-
-        println!("{:#?}", &off_abil);
-        println!("{:#?}", &def_abil);
 
         off_abil.iter().enumerate().for_each(|(i, off_player)|{
             matchups.push(Matchup(off_player.0.clone(), def_abil[i].0.clone()))

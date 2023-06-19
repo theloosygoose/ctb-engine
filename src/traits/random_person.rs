@@ -1,0 +1,48 @@
+use crate::person::PersonId;
+use crate::person::previews::{OffPreview, DefPreview};
+
+pub trait WeightedRandom {
+    fn random_person(&self)-> PersonId;
+}
+
+impl WeightedRandom for Vec<OffPreview> {
+    fn random_person(&self)-> PersonId {
+        let mut ids: Vec<PersonId> = vec![];
+        let mut val: Vec<f32> = vec![];
+
+        &self.iter().for_each(|player| {
+            ids.push(player.0.clone());
+            val.push(player.1.clone());
+        });
+
+        let ball_handler = random_choice::random_choice()
+            .random_choice_f32(&ids, &val, 1)
+            .first()
+            .unwrap()
+            .to_owned()
+            .to_owned();
+
+        ball_handler
+    }
+}
+
+impl WeightedRandom for Vec<DefPreview> {
+    fn random_person(&self)-> PersonId {
+        let mut ids: Vec<PersonId> = vec![];
+        let mut val: Vec<f32> = vec![];
+
+        &self.iter().for_each(|player| {
+            ids.push(player.0.clone());
+            val.push(player.1.clone());
+        });
+
+        let ball_handler = random_choice::random_choice()
+            .random_choice_f32(&ids, &val, 1)
+            .first()
+            .unwrap()
+            .to_owned()
+            .to_owned();
+
+        ball_handler
+    }
+}

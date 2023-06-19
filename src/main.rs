@@ -1,14 +1,11 @@
 pub mod game_handle;
 pub mod math;
 pub mod person;
-pub mod team;
 pub mod teams;
 pub mod weights;
 pub mod traits;
 
 use crate::teams::*;
-use crate::person::previews::*;
-use crate::person::matchup::Matchup;
 use crate::game_handle::calculate::possession_loop;
 
 fn main() {

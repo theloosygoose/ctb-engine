@@ -5,6 +5,9 @@ use crate::person::{PersonId, Person};
 use crate::person::matchup::*;
 use crate::person::previews::*;
 
+use crate::traits::random_person::WeightedRandom;
+use crate::traits::search::Searchable;
+
 pub enum Action {
     Shoot,
     Create,
@@ -47,11 +50,20 @@ pub fn possession_loop(
     let matchups = Matchup::gen(&o_driving_previews, &d_on_ball_previews);
 
     while duration < shot_clock {
-        let initiator = &o_initiator_previews.pick_random_val();
-        println!("{:#?} is the initiator", initiator);
+        let initiator = &o_initiator_previews.random_person();
+        let i_matchup = matchups.get_player(initiator).1;
 
+        let initiator_creation = o_driving_previews.get_player(initiator);
+        let primary_defender_onball = d_on_ball_previews.get_player(&i_matchup);
 
+        println!("{:#?} is the initiator", &initiator);
+        println!("He is guarded by {:#?}", &i_matchup);
+        let openess = find_openess( &initiator_creation, &primary_defender_onball, &o_off_ball_previews, &d_off_ball_previews);;
 
+        
+        println!("{:?}", openess);
+
+        duration += 20; 
     }
 
     possession
@@ -59,10 +71,29 @@ pub fn possession_loop(
 
 
 //So Based off ball handler ability to get open
-fn find_openess(matchup: Matchup, offense: &Vec<OffPreview>, defense: &Vec<DefPreview>) -> [f32; 5] {
-    let mut openess: [f32; 5] = todo!();
+fn find_openess(
+                o_creation: &OffPreview,
+                d_onball: &DefPreview,
+                offense: &Vec<OffPreview>, 
+                defense: &Vec<DefPreview>,
+                ) -> [f32; 5] {
+    let mut openess: [f32; 5] = [0.0, 0.0, 0.0, 0.0, 0.0];
+    let mut average_def = 0.0;
 
+    defense.iter().for_each(|preview| average_def += preview.1);
+
+    average_def = average_def / defense.len() as f32;
+
+    let mut i:usize = 1;
+
+    openess[0] = o_creation.1 - d_onball.1;
+
+    offense.iter().for_each(|preview|{
+        if preview.0 != o_creation.0 {
+            openess[i + 0] = (preview.1 + (openess[0] / 50.0)) - average_def;
+            i += 1;
+        };
+    });
 
     openess
 }
-
