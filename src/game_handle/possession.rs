@@ -1,5 +1,6 @@
 use crate::person::PersonId;
 
+#[derive(Debug)]
 pub enum ShotType {
     Three(bool),
     MidRange(bool),
@@ -9,12 +10,14 @@ pub enum ShotType {
     None,
 }
 
+#[derive(Debug)]
 pub enum Foul {
     Shooting(PersonId, PersonId, u16),
     OnFloor(PersonId, PersonId),
     None,
 }
 
+#[derive(Debug)]
 pub enum Turnover {
     OutOfBounds(PersonId),
     OffensiveFoul(PersonId),
@@ -23,6 +26,7 @@ pub enum Turnover {
     None,
 }
 
+#[derive(Debug)]
 pub struct PossesionData {
     pub ongoing: bool,
     pub shot_type: ShotType,

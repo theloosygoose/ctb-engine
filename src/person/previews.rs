@@ -6,6 +6,7 @@ pub enum OffVal {
     Driving,
     OffBall,
     FloorSpacing,
+    Passing,
 }
 
 #[derive(Debug, Clone, Copy, PartialEq)]

@@ -1,3 +1,13 @@
+pub const PASSING: [f32; 7] = [
+    1.0, //ball handle
+    7.0, //off_awareness
+    1.0, //height
+    4.0, //pass_accuracy
+    2.0, //touch 
+    5.0, //intelligence
+    4.0, //creativity
+];
+
 pub const INITIATOR: [f32; 9] = [
     1.5, //ball handle
     1.8, //off_awareness

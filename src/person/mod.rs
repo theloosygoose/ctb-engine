@@ -26,6 +26,17 @@ impl Person {
         let personality = self.personality;
 
         match value_type {
+            OffVal::Passing=> {
+                let value = ((rtngs.ball_handle as f32 * PASSING[0])
+                             + (rtngs.off_awareness as f32 * PASSING[1])
+                             + (rtngs.height as f32 * PASSING[2])
+                             + (rtngs.pass_accuracy as f32 * PASSING[3])
+                             + (rtngs.touch as f32 * PASSING[4])
+                             + (personality.intelligence as f32 * PASSING[5])
+                             + (personality.creativity as f32 * PASSING[6])) / PASSING.iter().sum::<f32>();
+
+                return OffPreview(self.person_id.clone(), value, value_type, self.intangibles.height);
+            },
             OffVal::Initiator => {
                 let value = ((rtngs.ball_handle as f32 * INITIATOR[0])
                              + (rtngs.off_awareness as f32 * INITIATOR[1])

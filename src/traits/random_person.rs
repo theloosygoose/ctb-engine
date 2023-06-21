@@ -46,3 +46,25 @@ impl WeightedRandom for Vec<DefPreview> {
         ball_handler
     }
 }
+
+impl WeightedRandom for Vec<(PersonId, f32)> {
+    fn random_person(&self) -> PersonId {
+        let mut ids: Vec<PersonId> = vec![];
+        let mut val: Vec<f32> = vec![];
+
+        &self.iter().for_each(|player| {
+            ids.push(player.0.clone());
+            val.push(player.1.clone());
+        });
+
+        let player = random_choice::random_choice()
+            .random_choice_f32(&ids, &val, 1)
+            .first()
+            .unwrap()
+            .to_owned()
+            .to_owned();
+
+        player 
+    }
+
+}
