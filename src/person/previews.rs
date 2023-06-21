@@ -3,7 +3,7 @@ use super::{Person, PersonId};
 #[derive(Debug, Clone, Copy, PartialEq)]
 pub enum OffVal {
     Initiator,
-    Driving,
+    Creation,
     OffBall,
     FloorSpacing,
     Passing,

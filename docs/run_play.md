@@ -1,68 +1,19 @@
-# Running Plays 
-
-In ***Clear the Bench*** running plays works by generating an "openess" array. For the start of each possession.
-
-# Steps
-1. Get all of the `Vec<Matchup>` for the defensive team
-
-2. Find first `ball_handler`
-
-3. Testing
+# Running A Possession
 
 
 
-## Roles 
-Roles play a big part of how plays are run 
+Steps
+--
 
-#### Offensive Engine
-
-#### Spot Up Shooter 
-
-#### Movement Shooter 
-
-#### Cutter 
-
-#### Off Ball Guard 
-
-#### Off Ball Movement
-
-#### Secoundary Creator
-
-#### Primary Creator
+### Calculate Initiator 
+This is calculated from how good the player is at handling the ball and passing the ball
+> Think of this as the first player to have the ball when the play starts
 
 
-#### Rolling Big Man 
-#### Versitile Big Man
-#### Playmaking Big Man
+### Calculate "Openess" of each Player
+Players move all of the time in Basketball 
 
-## Defense
+Each offensive player's off_ball ability is calculated and subtracted against the average defensive off_ball ability
+to see whether they will be open **if** they get the ball passed to them.
 
-### Primary Guard Defender 
-
-### Primary Wing Defender 
-
-### Primary Big Defender 
-
-### Primary Big Defender 
-
-
-# Steps
-The Question is who takes priority --- The Coach or the Players??
-
-A Player should be able to have multiple roles 
-
-But what is a role?
-
-Basically a role is going to be how a player plays off the ball?
-
-I think that we just have to narrow down the amount of roles 
-
-# How to Simulate Games
-
-#### Needs
-Accurate Statistics -- Final Scores should be accurate 
-
---> Good Plyaers shooting more shots 
---> Bad Players shooting bad shots
-
-#### Wants 
+### Calculate the Openess

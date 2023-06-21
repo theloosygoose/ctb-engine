@@ -59,15 +59,15 @@ impl Person {
 
                 return OffPreview(self.person_id.clone(), value, value_type, self.intangibles.height);
             },
-            OffVal::Driving => {
-                let value = ((rtngs.off_awareness as f32 * DRIVING[0])
-                             + (rtngs.touch as f32 * DRIVING[1])
-                             + (rtngs.speed as f32 * DRIVING[2])
-                             + (rtngs.burst as f32 * DRIVING[3])
-                             + (rtngs.strength as f32 * DRIVING[4])
-                             + (rtngs.fluidity as f32 * DRIVING[5])
-                             + (personality.intelligence as f32 * DRIVING[6])
-                             + (personality.dog as f32 * DRIVING[7])) / DRIVING.iter().sum::<f32>();
+            OffVal::Creation => {
+                let value = ((rtngs.off_awareness as f32 * CREATION[0])
+                             + (rtngs.touch as f32 * CREATION[1])
+                             + (rtngs.speed as f32 * CREATION[2])
+                             + (rtngs.burst as f32 * CREATION[3])
+                             + (rtngs.strength as f32 * CREATION[4])
+                             + (rtngs.fluidity as f32 * CREATION[5])
+                             + (personality.intelligence as f32 * CREATION[6])
+                             + (personality.dog as f32 * CREATION[7])) / CREATION.iter().sum::<f32>();
 
                 return OffPreview(self.person_id.clone(), value, value_type, self.intangibles.height);
             },

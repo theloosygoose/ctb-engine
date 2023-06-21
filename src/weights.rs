@@ -28,15 +28,15 @@ pub const OFF_BALL: [f32; 5] = [
     1.3, //dog
 ];
 
-pub const DRIVING: [f32; 8] = [
-    1.0, //off_awareness
-    1.0, //touch
-    1.3, //speed
-    1.7, //burst
-    1.4, //strength
-    1.3, //fluidity
-    0.9, //intelligence
-    1.4, //dog
+pub const CREATION: [f32; 8] = [
+    2.0, //off_awareness
+    1.5, //touch
+    2.0, //speed
+    5.0, //burst
+    3.0, //strength
+    2.0, //fluidity
+    1.0, //intelligence
+    2.0, //dog
 ];
 
 pub const SPACING: [f32; 4] = [
