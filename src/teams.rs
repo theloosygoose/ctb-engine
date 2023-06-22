@@ -15,6 +15,7 @@ pub fn get_team_0() -> Vec<Person> {
             creativity: 58,
             intelligence: 51,
         },
+
         intangibles: IntangibleRatings {
             ball_handle: 40,
             burst: 68,

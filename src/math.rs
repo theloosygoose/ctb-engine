@@ -1,4 +1,4 @@
-pub fn mean(data: &Vec<f32>) -> f32 {
+fn mean(data: &Vec<f32>) -> f32 {
     let sum = data.iter().sum::<f32>() as f32;
 
     let count = data.len();
@@ -6,7 +6,7 @@ pub fn mean(data: &Vec<f32>) -> f32 {
     sum / count as f32
 }
 
-pub fn std_dev(data: &Vec<f32>) -> f32 {
+fn std_dev(data: &Vec<f32>) -> f32 {
     let data_mean = mean(data);
     let count = data.len();
 
@@ -23,11 +23,14 @@ pub fn std_dev(data: &Vec<f32>) -> f32 {
     variance.sqrt()
 }
 
-pub fn z_score(data: &Vec<f32>, data_std_dev: f32, data_mean: f32) -> Vec<f32> {
+pub fn z_score(data: &Vec<f32>) -> Vec<f32> {
+    let mean = mean(data);
+    let std_dev = std_dev(data);
+
     let mut z_scores: Vec<f32> = vec![];
 
     data.iter().for_each(|val| {
-        let z_score = (val - data_mean) / data_std_dev;
+        let z_score = (val - mean) / std_dev;
 
         z_scores.push(z_score);
     });
