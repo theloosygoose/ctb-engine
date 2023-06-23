@@ -250,4 +250,55 @@ fn shoot_or_drive(player: &Person) -> ShotDrive {
     } 
 }
 
+struct Advantage {
+    creation_type: ShotDrive,
+    win: bool,
+    val: f32,
+}
+fn advantage_check(ball_handler: &Person, defender: &Person, shot_or_drive: ShotDrive) -> Advantage {
+    let off_modifier = rand::thread_rng().gen_range(-40..40) as f32;
+    let def_modifier = rand::thread_rng().gen_range(-40..40) as f32;
 
+    match shot_or_drive {
+        ShotDrive::CreateDrive => {
+            let bh_val = ball_handler.off_preview(OffVal::Creation).1 + off_modifier;
+            let def_val = defender.off_preview(OffVal::Creation).1 + def_modifier;
+
+            let val = bh_val - def_val;
+
+            let win = if bh_val > 0.0 { true } else {false};
+
+            Advantage {
+                creation_type: ShotDrive::CreateDrive,
+                win,
+                val,
+            }
+
+        }, 
+        ShotDrive::CreateShot => {
+            let bh_val = ball_handler.off_preview(OffVal::Creation).1 + off_modifier;
+            let def_val = ball_handler.def_preview(DefVal::OnBall).1 + def_modifier;
+
+            let val = bh_val - def_val;
+
+            let win = if bh_val > 0.0 { true } else {false};
+
+            Advantage {
+                creation_type: ShotDrive::CreateShot,
+                win,
+                val,
+            }
+
+        }
+    }
+}
+
+struct ShotData {
+    shottype: ShotType,
+    make: bool,
+    foul: bool,
+}
+
+fn calculate_shot(advantage: Advantage, ball_handler: &Person, defender: &Person) -> ShotData {
+
+}

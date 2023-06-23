@@ -19,7 +19,7 @@ fn main() {
 
     let qtr_time = 120;
 
-    /* let mut n = 0;
+    let mut n = 0;
     let mut counter:HashMap<String, u16> = HashMap::new();
     let mut num_passes:HashMap<usize, u16> = HashMap::new();
 
@@ -42,9 +42,9 @@ fn main() {
         n += 1; 
     }
 
-    println!("{:#?}", counter);
-    println!("{:#?}", num_passes); */
-    let data = possession_loop(&team_0, &team_1, qtr_time);
-    println!("{:#?}", data);
 
+    println!("{:#?}", counter);
+    println!("{:#?}", num_passes);
+    // let data = possession_loop(&team_0, &team_1, qtr_time);
+    // println!("{:#?}", data);
 }
