@@ -95,21 +95,22 @@ pub fn possession_loop(
 pub struct Openess(pub PersonId, pub f32);
 
 #[derive(Debug)]
-struct PassTo(PersonId, f32);
+pub struct OffAbility(pub PersonId, pub f32);
 
 //So Based off ball handler ability to get open
 fn team_openess(
                 initiatior:&OffPreview,
                 on_ball_passing:&OffPreview,
-
                 on_ball_defender:f32,
 
-                offense_off_ball: &Vec<OffPreview>, 
+                advantage: Advantage,
 
+                offense_off_ball: &Vec<OffPreview>, 
                 defense_offball: &Vec<DefPreview>,
 
                 ) -> Vec<Openess> {
 
+    //Create the initial Vec<Openess> to be filled
     let mut openess:Vec<Openess> = Vec::with_capacity(4);
 
     //GET AVERAGE DEFENSE OFF BALL
@@ -118,28 +119,26 @@ fn team_openess(
         def_avg += defender.1;
     });
 
+    //Create Random Modifiers
     let mut rand_thread = rand::thread_rng();
     let initiator_mod = rand_thread.gen_range(0.0..2.0);
     let defender_mod = rand_thread.gen_range(0.0..2.0);
 
-    //Calculate Creation win or loss
-    let on_ball_creation_mod = (initiatior.1 * initiator_mod) - (on_ball_defender * defender_mod);
-
-    let def_mod = rand::thread_rng().gen_range(-20..20);
+    //Random Defense to Change the range per posession or pass
+    let def_mod = rand_thread.gen_range(-20..20);
     def_avg = (def_avg / defense_offball.len() as f32) + def_mod as f32;
 
-    //Who is open?
-    offense_off_ball.iter().for_each(|off_ball|{
-        let mut rng = rand::thread_rng();
-        let num = rng.gen_range(0.0..1.0);
+    //Start with Creation and Advantage Data 
+    let advantage_type = advantage.creation_type;
+    let advantage_win = advantage.win;
+    let advantage_data = advantage.val;
 
-        if off_ball.0 != initiatior.0 {
-            let val = ((off_ball.1 - def_avg) * num) + (on_ball_creation_mod/60.0) + (on_ball_passing.1/50.0);
-            openess.push(Openess(off_ball.0.clone(), val));
-        };
+
+    offense_off_ball.iter().for_each(|player| {
 
     });
 
+    //Who is open?
     openess
 }
 
@@ -193,7 +192,9 @@ fn action(team_openess: &Vec<Openess>, team_creation_abillity: &Vec<OffPreview> 
                 }
             }
         }
+
     } else {
+
         //PLAYER DOES HAVE BETTER CREATION THAN POSSIBLE PASS PLAYER
         if dog_check {
             println!("DOG CHECK PASS !!! {:?}", &ball_handler.person_id);
@@ -210,7 +211,6 @@ fn action(team_openess: &Vec<Openess>, team_creation_abillity: &Vec<OffPreview> 
             // DOG CHECK FAILED PLAYER PASSES THE BALL EVEN THOUGH HIS CREATION IS BETTER
             Action::Pass(possible_playerid.clone())
         }
-
     }
 }
 
@@ -221,7 +221,6 @@ enum ShotDrive {
 }
 
 fn shoot_or_drive(player: &Person) -> ShotDrive {
-
     let will_shoot = player.intangibles.touch + player.intangibles.shot_form + player.intangibles.burst;
 
     let will_drive = player.intangibles.touch + player.intangibles.burst + player.intangibles.strength;
